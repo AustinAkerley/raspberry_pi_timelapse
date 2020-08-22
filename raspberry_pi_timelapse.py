@@ -48,12 +48,16 @@ time_running_to_sec = time_running*24*60*60
 id = 1
 while (start_time-current_time).total_seconds() < time_running_to_sec:
     current_time = datetime.datetime.now()
-    photo_name = "./garden" + str(current_time)+".jpg"
+    print("Current Time:"+str(current_time))
+    photo_name = "./garden" + str(current_time)+".jpeg"
     photo_name = photo_name.replace(" ", "")
-    photo_name = photo_name.replace(":", ".") 
+    photo_name = photo_name.replace(":", ".")
+    print("Capturing Photo")
     os.system("raspistill -o "+photo_name)
+    print("Photo Captured")
     time.sleep(10)
-    image = convert_image_to_blob(photo_name)
+    print("Sending Photo To DB")
     write_to_table(id, current_time, image, photo_name[2:])
+    print("Sent Photo To DB")
     id+=1
     time.sleep(60)
