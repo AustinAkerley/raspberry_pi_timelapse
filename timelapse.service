@@ -1,0 +1,8 @@
+[Unit]
+Description=Take pictures
+
+[Service]
+ExecStart=/home/pi/Projects/raspberry_pi_timelapse/raspberry_pi_timelapse.py
+
+[Install]
+WantedBy=multi-user.target
