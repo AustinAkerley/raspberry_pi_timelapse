@@ -49,6 +49,7 @@ id = 1
 while (start_time-current_time).total_seconds() < time_running_to_sec:
     current_time = datetime.datetime.now()
     photo_name = "./garden" + str(current_time)+".jpg"
+    photo_name = photo_name.strip()
     os.system("raspistill -o "+photo_name)
     time.sleep(10)
     image = convert_image_to_blob(photo_name)
