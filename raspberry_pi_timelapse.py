@@ -40,19 +40,16 @@ def write_to_table(id, date_time, photo, photo_name):
         print("Failed inserting BLOB data into MySQL table {}".format(error))
 
 # Start of main script
-try:
-    start_time = datetime.datetime.now()
-    print("Start Time: "+str(start_time))
-    time_running = 20 # In Days
+start_time = datetime.datetime.now()
+print("Start Time: "+str(start_time))
+time_running = 20 # In Days
+current_time = datetime.datetime.now()
+time_running_to_sec = time_running*24*60*60
+id = 1
+while (start_time-current_time).total_seconds() < time_running_to_sec:
     current_time = datetime.datetime.now()
-    time_running_to_sec = time_running*24*60*60
-    id = 1
-    while (start_time-current_time) < time_running_to_sec:
-        current_time = datetime.datetime.now()
-        photo_name = "garden" + str(current_time)+".jpg"
-        os.system("raspistill -o "+photo_name)
-        image = convert_image_to_blob(photo_name)
-        write_to_table(id, current_time, image, photo_name)
-        id+=1
-except:
-    print("Something didn't work, sad...")
+    photo_name = "garden" + str(current_time)+".jpg"
+    os.system("raspistill -o "+photo_name)
+    image = convert_image_to_blob(photo_name)
+    write_to_table(id, current_time, image, photo_name)
+    id+=1
