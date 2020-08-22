@@ -57,7 +57,7 @@ while (start_time-current_time).total_seconds() < time_running_to_sec:
     print("Photo Captured")
     time.sleep(10)
     print("Sending Photo To DB")
-    write_to_table(id, current_time, image, photo_name[2:])
+    write_to_table(id, current_time, photo_name, photo_name[2:])
     print("Sent Photo To DB")
     id+=1
     time.sleep(60)
