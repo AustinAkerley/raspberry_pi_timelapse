@@ -30,7 +30,7 @@ def write_to_table(id, date_time, photo, photo_name):
         insert_blob_tuple = (id, date_time, photo_long_blob, photo_name)
         result = cursor.execute(sql_insert_blob_query, insert_blob_tuple)
         connection.commit()
-        print("Image and file inserted successfully as a BLOB into python_employee table", result)
+        print("Image and file inserted successfully as a BLOB into photos table", result)
         if (connection.is_connected()):
             cursor.close()
             connection.close()
