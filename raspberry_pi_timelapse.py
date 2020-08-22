@@ -40,6 +40,9 @@ def write_to_table(id, date_time, photo, photo_name):
         print("Failed inserting BLOB data into MySQL table {}".format(error))
 
 # Start of main script
+time_running = 20 # In Days
+photo_delay = .05 # In Hours
+photo_delay = photo_delay *60*60
 start_time = datetime.datetime.now()
 print("Start Time: "+str(start_time))
 time_running = 20 # In Days
@@ -60,4 +63,4 @@ while (start_time-current_time).total_seconds() < time_running_to_sec:
     write_to_table(id, current_time, photo_name, photo_name[2:])
     print("Sent Photo To DB")
     id+=1
-    time.sleep(60)
+    time.sleep(photo_delay)
